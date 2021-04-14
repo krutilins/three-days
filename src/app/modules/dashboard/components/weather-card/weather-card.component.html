@@ -1,0 +1,17 @@
+<div class="user-location-container" *ngIf="userLocationData">
+  <div class="city"><span>City:</span> {{ userLocationData.city }}</div>
+</div>
+
+<div class="weather-container" *ngIf="weather">
+  <div class="temperature">
+    <span>Temperature: </span>{{ weather.temperature }}
+  </div>
+  <div class="humidity"><span>Humidity: </span> {{ weather.humidity }}</div>
+  <div class="wind"><span>Wind Speed: </span>{{ weather.wind.speed }}</div>
+</div>
+
+<div class="error-container" *ngIf="errorMessage">
+  <div class="error-message">
+    <span>Error message: </span>{{ errorMessage }}
+  </div>
+</div>
