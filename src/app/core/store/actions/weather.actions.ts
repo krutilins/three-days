@@ -1,14 +1,14 @@
 import { createAction, props } from '@ngrx/store';
-import { CurrentWeather } from '../../models/current-weather.model';
-import { LocationData } from '../../models/location-data.model';
+import { CurrentWeatherInfo } from '../../models/current-weather-info.model';
+import { CoordinateInfo } from '../../models/coordinate-info.model';
 
 export const weatherLoad = createAction(
   '[Weather] Weather Load',
-  props<LocationData>()
+  props<CoordinateInfo>()
 );
 export const weatherLoadSuccess = createAction(
   '[Weather API] Weather Load Success',
-  props<CurrentWeather>()
+  props<CurrentWeatherInfo>()
 );
 export const weatherLoadFailure = createAction(
   '[Weather API] Weather Load Failure',

@@ -13,11 +13,31 @@
   </mat-toolbar-row>
 
   <!-- TODO: live search -->
-  <!-- <mat-toolbar-row>
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let city of cities" [value]="option">
-        {{ option }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-toolbar-row> -->
+  <mat-toolbar-row>
+    <form class="autocomplete-form">
+      <mat-form-field class="full-width">
+        <mat-label>Select City</mat-label>
+        <input
+          type="text"
+          placeholder="Pick one"
+          aria-label="Select City"
+          matInput
+          [formControl]="myControl"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          (optionSelected)="updateSelectedCity($event)"
+          autoActiveFirstOption
+          #auto="matAutocomplete"
+        >
+          <mat-option
+            *ngFor="let option of cityList; trackBy: trackByFn"
+            [value]="option"
+          >
+            {{ option.text }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+  </mat-toolbar-row>
 </mat-toolbar>

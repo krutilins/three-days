@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { CurrentWeather } from '../models/current-weather.model';
-import { LocationData } from '../models/location-data.model';
+import { CurrentWeatherInfo } from '../models/current-weather-info.model';
+import { CoordinateInfo } from '../models/coordinate-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,11 @@ export class OpenWeatherAPIService {
     this.APIUrl = environment.openWeather.APIUrl;
   }
 
-  public getCurrentWeather(locationData: LocationData): Observable<CurrentWeather> {
+  public getCurrentWeather(locationData: CoordinateInfo): Observable<CurrentWeatherInfo> {
     return this.getMetadata(locationData)
       .pipe(
         map(metadata => {
-          const currentWeather: CurrentWeather = {
+          const currentWeather: CurrentWeatherInfo = {
             temperature: metadata.main.temp,
             humidity: metadata.main.humidity,
             wind: metadata.wind
@@ -35,7 +35,7 @@ export class OpenWeatherAPIService {
       );
   }
 
-  private getMetadata(locationData: LocationData): Observable<any> {
+  private getMetadata(locationData: CoordinateInfo): Observable<any> {
 
     const options = {
       params: new HttpParams({

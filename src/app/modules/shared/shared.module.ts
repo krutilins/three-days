@@ -13,10 +13,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
+    FormsModule,
     CommonModule,
     MatCardModule,
     MatListModule,
@@ -26,12 +32,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatRadioModule,
     MatButtonModule,
     MatDialogModule,
+    MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
     MatAutocompleteModule,
   ],
   exports: [
+    FormsModule,
     MatCardModule,
     MatListModule,
     MatIconModule,
@@ -40,9 +49,11 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatRadioModule,
     MatButtonModule,
     MatDialogModule,
+    MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
     MatAutocompleteModule,
   ]
 })

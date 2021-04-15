@@ -1,9 +1,7 @@
-import { LocationData } from './location-data.model';
+import { CoordinateInfo } from './coordinate-info.model';
 
 export interface CityInfo {
-  id: number;
-  name: string;
-  state: string;
-  country: string;
-  coord: LocationData;
+  id: string;
+  text: string;
+  coordinates: CoordinateInfo;
 }
