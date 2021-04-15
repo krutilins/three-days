@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { CityInfo } from '../models/city-info.model';
+import { LocationInfo } from '../models/city-info.model';
 import { GeoapifyMetadata } from '../models/geoapify-metadata.model';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class AutocompleteLocationService {
     this.APIEndpoint = environment.geoApify.autocompleteEndpoint;
   }
 
-  getAutocompleteList(request: string): Observable<CityInfo[]> {
+  public getAutocompleteList(request: string): Observable<LocationInfo[]> {
     return this.getGeoapifyMetadata(request).pipe(
       map(metadata => {
         return metadata.features.map(feature => {

@@ -1,3 +1,14 @@
 :host {
   display: block;
+  height: 100%;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__weather-card {
+    flex-grow: 1;
+  }
 }

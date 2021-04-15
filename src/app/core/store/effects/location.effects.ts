@@ -13,7 +13,7 @@ export class LocatoinEffects {
       ofType(LocationActions.loadCurrentUserLocation),
       mergeMap(() => this.userLocationApi.getUserLocatoinInfo().pipe(
         map(userLocation => LocationActions.loadCurrentUserLocationSuccess({
-          cityInfo: {
+          locationInfo: {
             id: String(userLocation.geonameId),
             coordinates: {
               lon: userLocation.lng,

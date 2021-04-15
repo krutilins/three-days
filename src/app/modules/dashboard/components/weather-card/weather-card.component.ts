@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { LocationInfo } from 'src/app/core/models/city-info.model';
 import { CurrentWeatherInfo } from 'src/app/core/models/current-weather-info.model';
-import { UserLocation } from 'src/app/core/models/user-location.model';
-import { ColorfulCloundsAPIService as ColorfulCloudsAPIService } from 'src/app/core/services/colorful-clouds-api.service';
-import { OpenWeatherAPIService } from 'src/app/core/services/open-weather-api.service';
-import { UserLocationAPIService } from 'src/app/core/services/user-location-api.service';
+import { AppState } from 'src/app/core/store';
+import { selectSelectedLocation } from 'src/app/core/store/selectors/location.selectors';
+import { selectWeatherForSelectedLocation } from 'src/app/core/store/selectors/weather.selectors';
 
 @Component({
   selector: 'app-weather-card',
@@ -12,57 +14,38 @@ import { UserLocationAPIService } from 'src/app/core/services/user-location-api.
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherCardComponent implements OnInit {
-  public weather: CurrentWeatherInfo = null;
-  public errorMessage: string = null;
-  public userLocationData: UserLocation = null;
+  public weather: CurrentWeatherInfo;
+  public weatherErrorMessage: string;
+  public weatherLoaded: boolean;
+
+  public location: LocationInfo;
+  public locationErrorMessage: string;
+  public locationLoaded: boolean;
 
   constructor(
-    private openWeatherAPIService: OpenWeatherAPIService,
-    private changeDetectionRef: ChangeDetectorRef, // TODO: replace change detection with store observable
-    private userLocationAPIService: UserLocationAPIService,
-    private colorfulCloudsAPIService: ColorfulCloudsAPIService
-  ) { }
-
-  ngOnInit(): void {
-    // // tslint:disable-next-line: deprecation //TODO: delete this deprication
-    // this.userLocationAPIService.getUserLocatoinInfo().subscribe(
-    //   userLocationDataResponse => {
-    //     this.userLocationData = userLocationDataResponse;
-    //     this.openWeatherAPIService.getCurrentWeather({
-    //       lon: this.userLocationData.lng,
-    //       lat: this.userLocationData.lat
-    //       // tslint:disable-next-line: deprecation //TODO: delete this deprication
-    //     }).subscribe(
-    //       weatherResponse => {
-    //         this.weather = weatherResponse;
-    //         this.changeDetectionRef.detectChanges();
-    //       },
-    //       error => {
-    //         this.errorMessage = error;
-    //         this.changeDetectionRef.detectChanges();
-    //       }
-    //     );
-    //   }
-    // );
-
-    this.userLocationAPIService.getUserLocatoinInfo().subscribe(
-      userLocationDataResponse => {
-        this.userLocationData = userLocationDataResponse;
-        this.colorfulCloudsAPIService.getCurrentWeather({
-          lon: this.userLocationData.lng,
-          lat: this.userLocationData.lat
-        }).subscribe(
-          weatherResponse => {
-            this.weather = weatherResponse;
-            this.changeDetectionRef.detectChanges();
-          },
-          error => {
-            this.errorMessage = error;
-            this.changeDetectionRef.detectChanges();
-          }
-        );
-      }
-    );
+    private store: Store<AppState>,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
   }
 
+  public ngOnInit(): void {
+    // tslint:disable-next-line: deprecation
+    this.store.select(selectWeatherForSelectedLocation).subscribe({
+      next: (weatherState) => {
+        this.weather = weatherState.weather;
+        this.weatherErrorMessage = weatherState.errorMessage;
+        this.weatherLoaded = weatherState.loaded;
+        this.changeDetectorRef.detectChanges();
+      }
+    });
+    // tslint:disable-next-line: deprecation
+    this.store.select(selectSelectedLocation).subscribe({
+      next: (selectedLocation) => {
+        this.location = selectedLocation.locationInfo;
+        this.locationErrorMessage = selectedLocation.errorMessage;
+        this.locationLoaded = selectedLocation.loaded;
+        this.changeDetectorRef.detectChanges();
+      }
+    });
+  }
 }

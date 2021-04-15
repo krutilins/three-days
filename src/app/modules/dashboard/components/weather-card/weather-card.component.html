@@ -1,17 +1,29 @@
-<div class="user-location-container" *ngIf="userLocationData">
-  <div class="city"><span>City:</span> {{ userLocationData.city }}</div>
-</div>
-
-<div class="weather-container" *ngIf="weather">
-  <div class="temperature">
-    <span>Temperature: </span>{{ weather.temperature }}
+<div class="wrapper">
+  <div class="container" *ngIf="locationLoaded; else locationErrorTemplate">
+    <div class="city"><span>Selected City:</span> {{ location.text }}</div>
   </div>
-  <div class="humidity"><span>Humidity: </span> {{ weather.humidity }}</div>
-  <div class="wind"><span>Wind Speed: </span>{{ weather.wind.speed }}</div>
-</div>
 
-<div class="error-container" *ngIf="errorMessage">
-  <div class="error-message">
-    <span>Error message: </span>{{ errorMessage }}
+  <ng-template #locationErrorTemplate>
+    <div class="error">
+      <div class="error-message">
+        <span>Location Error message: </span>{{ locationErrorMessage }}
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="container" *ngIf="weatherLoaded; else weatherErrorTemplate">
+    <div class="temperature">
+      <span>Temperature: </span>{{ weather.temperature }}
+    </div>
+    <div class="humidity"><span>Humidity: </span> {{ weather.humidity }}</div>
+    <div class="wind"><span>Wind Speed: </span>{{ weather.wind.speed }}</div>
   </div>
+
+  <ng-template #weatherErrorTemplate>
+    <div class="error">
+      <div class="error-message">
+        <span>Location Error message: </span>{{ weatherErrorMessage }}
+      </div>
+    </div>
+  </ng-template>
 </div>

@@ -8,6 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { reducer } from './core/store';
+import { WeatherEffects } from './core/store/effects/weather.effects';
+import { LocatoinEffects } from './core/store/effects/location.effects';
 
 @NgModule({
   declarations: [
@@ -20,8 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducer, {}),
+    EffectsModule.forRoot([WeatherEffects, LocatoinEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

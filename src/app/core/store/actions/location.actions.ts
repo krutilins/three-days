@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { CityInfo } from '../../models/city-info.model';
+import { LocationInfo } from '../../models/city-info.model';
 
 export const loadCurrentUserLocation = createAction(
   '[City Info] Load Current User Location By Ip'
@@ -7,7 +7,7 @@ export const loadCurrentUserLocation = createAction(
 
 export const loadCurrentUserLocationSuccess = createAction(
   '[City Info Api] Load Current User Location Success',
-  props<{ cityInfo: CityInfo }>()
+  props<{ locationInfo: LocationInfo }>()
 );
 
 export const loadCurrentUserLocationFailure = createAction(
@@ -17,7 +17,7 @@ export const loadCurrentUserLocationFailure = createAction(
 
 export const updateSelectedCityInfo = createAction(
   '[City Info] Update City Info',
-  props<{ cityInfo: CityInfo }>()
+  props<{ locationInfo: LocationInfo }>()
 );
 
 export const setCurrentCityAsSelected = createAction(

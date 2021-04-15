@@ -11,3 +11,16 @@
 .full-width {
   width: 100%;
 }
+
+mat-toolbar-row {
+  display: flex;
+  justify-content: center;
+}
+
+mat-radio-group {
+  display: block;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
