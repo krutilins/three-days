@@ -18,7 +18,7 @@ import { LocatoinEffects } from './core/store/effects/location.effects';
   ],
   imports: [
     FormsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
