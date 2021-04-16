@@ -11,7 +11,8 @@
     "dev:ssr": "ng run three-days:serve-ssr",
     "serve:ssr": "node dist/three-days/server/main.js",
     "build:ssr": "ng build --prod && ng run three-days:server:production",
-    "prerender": "ng run three-days:prerender"
+    "prerender": "ng run three-days:prerender",
+    "heroku-postbuild": "ng build --prod && ng run three-days:server:production"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.1.0",
