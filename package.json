@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
-    "build": "ng build",
+    "start": "npm run serve:ssr",
+    "build": "npm run build:ssr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -12,7 +12,7 @@
     "serve:ssr": "node dist/three-days/server/main.js",
     "build:ssr": "ng build --prod && ng run three-days:server:production",
     "prerender": "ng run three-days:prerender",
-    "heroku-postbuild": "ng build --prod && ng run three-days:server:production"
+    "heroku-postbuild": "npm run build:ssr"
   },
   "engines": {
     "node": "15.11.0",
