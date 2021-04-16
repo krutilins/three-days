@@ -11,6 +11,7 @@
     "dev:ssr": "ng run three-days:serve-ssr",
     "serve:ssr": "node dist/three-days/server/main.js",
     "build:ssr": "ng build --prod && ng run three-days:server:production",
+    "build-weather-api": "node cors-handler-server/index.ts",
     "prerender": "ng run three-days:prerender",
     "heroku-postbuild": "npm run build:ssr"
   },
@@ -37,8 +38,8 @@
     "express": "^4.15.2",
     "rxjs": "^6.6.7",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.3",
-    "typescript": "~4.1.5"
+    "typescript": "~4.1.5",
+    "zone.js": "~0.11.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1102.3",
