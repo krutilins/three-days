@@ -24,3 +24,15 @@ mat-radio-group {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .avatar {
+    border-radius: 50%;
+    height: 60px;
+  }
+}

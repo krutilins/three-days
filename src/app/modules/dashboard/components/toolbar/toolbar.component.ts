@@ -5,6 +5,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { Store } from '@ngrx/store';
 import { map, startWith } from 'rxjs/operators';
 import { LocationInfo } from 'src/app/core/models/city-info.model';
+import { VkProfileInfo } from 'src/app/core/models/vk-profile-info.model';
 import { WeatherAPIes } from 'src/app/core/models/weather-apies.model';
 import { AutocompleteLocationService } from 'src/app/core/services/autocomplete-location.service';
 import { AppState } from 'src/app/core/store';
@@ -12,6 +13,7 @@ import { changeWeatherAPI } from 'src/app/core/store/actions/api-selector.action
 import { updateSelectedCityInfo } from 'src/app/core/store/actions/location.actions';
 import { weatherLoad } from 'src/app/core/store/actions/weather.actions';
 import { selectSelectedAPI } from 'src/app/core/store/selectors/api-selector.selectors';
+import { selectVKProfile } from 'src/app/core/store/selectors/vk-profile.selectors';
 
 @Component({
   selector: 'app-toolbar',
@@ -25,6 +27,8 @@ export class ToolbarComponent implements OnInit {
 
   public cityList: LocationInfo[] = [];
   public weatherAPIes = WeatherAPIes;
+
+  public vkProfile: VkProfileInfo;
 
   constructor(
     private autocompleteLocationService: AutocompleteLocationService,
@@ -51,6 +55,10 @@ export class ToolbarComponent implements OnInit {
 
     // tslint:disable-next-line: deprecation
     this.store.select(selectSelectedAPI).subscribe(selectedAPI => this.selectedAPIControl.setValue(selectedAPI));
+    this.store.select(selectVKProfile).subscribe(vkProfile => {
+      this.vkProfile = vkProfile.profile;
+      this.changeDetectionRef.detectChanges();
+    });
   }
 
   public updateSelectedAPI($event: MatRadioChange): void {

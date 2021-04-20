@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/core/store';
 import { loadCurrentUserLocation } from 'src/app/core/store/actions/location.actions';
+import { loadProfile } from 'src/app/core/store/actions/vk-profile.actions';
 import { weatherLoad } from 'src/app/core/store/actions/weather.actions';
 import { selectSelectedAPI } from 'src/app/core/store/selectors/api-selector.selectors';
 import { selectSelectedLocation } from 'src/app/core/store/selectors/location.selectors';
@@ -18,6 +19,7 @@ export class DashboardPageComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(loadCurrentUserLocation());
+    this.store.dispatch(loadProfile());
 
     // tslint:disable-next-line: deprecation
     this.store.select(selectSelectedAPI).subscribe(selectedAPI => { // TODO: I don't like this part of my code

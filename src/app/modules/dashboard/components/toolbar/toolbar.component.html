@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Application Logo</span>
+    <div class="header">
+      <span>Application Logo</span>
+      <img class="avatar" *ngIf="vkProfile" [src]="vkProfile.photo100" alt="" />
+    </div>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
@@ -17,7 +20,6 @@
     </mat-radio-group>
   </mat-toolbar-row>
 
-  <!-- TODO: live search -->
   <mat-toolbar-row>
     <form class="autocomplete-form">
       <mat-form-field class="full-width">

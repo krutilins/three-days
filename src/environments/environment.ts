@@ -27,6 +27,19 @@ export const environment = {
     APIKey: '384335153e794f04ae10fbc84ec8d154',
     APIUrl: 'https://api.geoapify.com/v1/geocode/',
     autocompleteEndpoint: 'autocomplete'
+  },
+  vkApi: {
+    oauth: {
+      APIUrl: 'https://oauth.vk.com/authorize',
+      redirectUri: 'http://localhost:4200/auth/vk-auth',
+      responseType: 'code'
+    },
+    api: {
+      APIUrl: 'https://api.vk.com/method',
+      usersGetEndpoint: '/users.get'
+    },
+    clientId: '7829476',
+    APIVersion: '5.130'
   }
 };
 

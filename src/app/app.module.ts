@@ -11,6 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { reducer } from './core/store';
 import { WeatherEffects } from './core/store/effects/weather.effects';
 import { LocatoinEffects } from './core/store/effects/location.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { VkAuthEffects } from './core/store/effects/vk-auth.effects';
+import { VkProfileEffects } from './core/store/effects/vk-profile.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { LocatoinEffects } from './core/store/effects/location.effects';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducer, {}),
-    EffectsModule.forRoot([WeatherEffects, LocatoinEffects]),
+    EffectsModule.forRoot([WeatherEffects, LocatoinEffects, VkAuthEffects, VkProfileEffects]),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx Demo App',
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

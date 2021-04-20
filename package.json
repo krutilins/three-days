@@ -34,6 +34,7 @@
     "@angular/router": "~11.2.5",
     "@ngrx/effects": "^11.1.0",
     "@ngrx/store": "^11.1.0",
+    "@ngrx/store-devtools": "^11.1.0",
     "@nguniversal/express-engine": "^11.2.1",
     "express": "^4.15.2",
     "rxjs": "^6.6.7",
