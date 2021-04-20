@@ -3,7 +3,7 @@ import { AppState, WeatherState } from '..';
 
 export const selectWeather = (state: AppState) => state.weather;
 
-export const selectCurrentWeather = createSelector(
+export const selectWeatherForSelectedLocation = createSelector(
   selectWeather,
-  (selectedWeather: WeatherState) => selectedWeather.currentWeather
+  (selectedWeather: WeatherState) => selectedWeather.weatherForSelectedLocation
 );

@@ -8,6 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { reducer } from './core/store';
+import { WeatherEffects } from './core/store/effects/weather.effects';
+import { LocatoinEffects } from './core/store/effects/location.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { VkAuthEffects } from './core/store/effects/vk-auth.effects';
+import { VkProfileEffects } from './core/store/effects/vk-profile.effects';
 
 @NgModule({
   declarations: [
@@ -15,13 +22,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     FormsModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducer, {}),
+    EffectsModule.forRoot([WeatherEffects, LocatoinEffects, VkAuthEffects, VkProfileEffects]),
+    StoreDevtoolsModule.instrument({
+      name: 'NgRx Demo App',
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

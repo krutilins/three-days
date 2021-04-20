@@ -8,7 +8,7 @@ export const selectCurrentUserLocation = createSelector(
   (locationState: LocationState) => locationState.currentUserLocaiton
 );
 
-export const selectSelectedCity = createSelector(
+export const selectSelectedLocation = createSelector(
   selectLocation,
-  (locationState: LocationState) => locationState.selectedCity
+  (locationState: LocationState) => locationState.selectedLocation
 );

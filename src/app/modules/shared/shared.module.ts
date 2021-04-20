@@ -18,9 +18,12 @@ import {
   FormsModule,
   ReactiveFormsModule
 } from '@angular/forms';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    NotFoundPageComponent
+  ],
   imports: [
     FormsModule,
     CommonModule,

@@ -1,18 +1,25 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Application Logo</span>
+    <div class="header">
+      <span>Application Logo</span>
+      <img class="avatar" *ngIf="vkProfile" [src]="vkProfile.photo100" alt="" />
+    </div>
   </mat-toolbar-row>
 
   <mat-toolbar-row>
-    <mat-radio-group>
-      <mat-radio-button value="1"> OpenWeatherApi </mat-radio-button>
-      <mat-radio-button value="2">
-        There should be second weather api
+    <mat-radio-group
+      [formControl]="selectedAPIControl"
+      (change)="updateSelectedAPI($event)"
+    >
+      <mat-radio-button [value]="weatherAPIes.OpenWeather">
+        OpenWeatherApi
+      </mat-radio-button>
+      <mat-radio-button [value]="weatherAPIes.ColorfulClouds">
+        ColorfulCloudsApi
       </mat-radio-button>
     </mat-radio-group>
   </mat-toolbar-row>
 
-  <!-- TODO: live search -->
   <mat-toolbar-row>
     <form class="autocomplete-form">
       <mat-form-field class="full-width">
@@ -22,7 +29,7 @@
           placeholder="Pick one"
           aria-label="Select City"
           matInput
-          [formControl]="myControl"
+          [formControl]="locationInputControl"
           [matAutocomplete]="auto"
         />
         <mat-autocomplete
